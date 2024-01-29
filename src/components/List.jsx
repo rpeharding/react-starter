@@ -26,45 +26,40 @@ class List extends Component {
   render() {
     // console.log("render ran, HTML getting created", this.state);
     const coins = this.state.crypto;
-    console.log(coins);
 
     // checking that we rendr page if we have got the data from the API
     if (coins) {
       const coinDetails = coins.map((e) => {
-        return [
-          e.image,
-          e.id,
-          e.current_price,
-          e.price_change_percentage_24h,
-          e.circulating_supply,
-        ];
+        return [e.image, e.id, e.current_price, e.price_change_percentage_24h];
       });
       console.log(coinDetails);
 
       return (
         <div className="list">
-          <div className="flex table-title">
-            <p className="list-item">Coin</p>
-            <p className="list-item">Price</p>
-            <p className="list-item">24h %</p>
-            <p className="list-item">Circulating Supply</p>
-          </div>
-          {coinDetails.map((e) => {
-            return (
-              <div className="flex table">
-                <div className="coin-name list-item">
-                  <img className="coin-icon" src={e[0]} />
-                  <h3 className="coin">{e[1]}</h3>
-                </div>
-                <p className="list-item">£ {e[2]}</p>
-                <p className="list-item">{e[3]} %</p>
-                <p className="list-item">{e[4]}</p>
-              </div>
-            );
-          })}
-        </div>
+          <div>
+            <div className="flex table-title">
+              <p className="list-item">Coin</p>
+              <p className="list-item">Price</p>
+              <p className="list-item">24h %</p>
+            </div>
 
-        // this is where our data goes
+            {coinDetails.map((e) => {
+              const upOrDown = e[3] > 0 ? "list-item up" : "list-item down";
+
+              return (
+                <div className="flex table">
+                  <div className="coin-name list-item">
+                    <img className="coin-icon" src={e[0]} />
+                    <h3 className="coin">{e[1]}</h3>
+                  </div>
+                  <p className="list-item">£ {e[2]}</p>
+                  <p className={upOrDown}>{e[3].toFixed(4)} %</p>
+                  <Button text="watch" btnClass="btn" />
+                </div>
+              );
+            })}
+          </div>
+        </div>
       );
     }
 

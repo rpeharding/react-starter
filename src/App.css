@@ -2,6 +2,10 @@ body {
   background-color: rgb(248, 248, 248);
 }
 
+h1 {
+  text-align: center;
+}
+
 .header,
 .main {
   padding: 0px 30px;
@@ -15,7 +19,7 @@ p {
 
 .flex {
   display: flex;
-  justify-content: space-between;
+
   align-items: center;
   gap: 10px;
 }
@@ -27,23 +31,83 @@ p {
 }
 
 .coin {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .list-item {
   width: 150px;
 }
 
+.list {
+  padding: 10px 0px;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 80vw;
+}
+
 .coin-icon {
   width: 30px;
 }
 
-.table,
-.table-title {
-  padding: 0px 20px;
-  background-color: white;
+.btn {
+  background-color: rgb(77, 104, 224);
+  color: white;
+  border: none;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-left: 30px;
 }
 
 .table-title {
   font-weight: bold;
+}
+
+.table,
+.table-title {
+  gap: 10px;
+}
+
+.form {
+  margin: 50px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.input,
+.search-btn {
+  height: 50px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 0px 20px;
+}
+
+.search-btn {
+  font-weight: bold;
+  padding: 0px 15px;
+}
+
+.down {
+  background-color: rgb(183, 70, 70);
+}
+
+.up {
+  background-color: rgb(39, 144, 100);
+}
+
+.down,
+.up {
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  width: 80px;
+  padding: 4px 2px;
+  text-align: center;
+  border-radius: 4px;
 }
