@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Button from "./Button";
 
 class List extends Component {
   constructor() {
@@ -42,7 +43,7 @@ class List extends Component {
 
       return (
         <div className="list">
-          <div className="flex">
+          <div className="flex table-title">
             <p className="list-item">Coin</p>
             <p className="list-item">Price</p>
             <p className="list-item">24h %</p>
@@ -50,7 +51,7 @@ class List extends Component {
           </div>
           {coinDetails.map((e) => {
             return (
-              <div className="flex">
+              <div className="flex table">
                 <div className="coin-name list-item">
                   <img className="coin-icon" src={e[0]} />
                   <h3 className="coin">{e[1]}</h3>

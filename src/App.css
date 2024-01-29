@@ -1,3 +1,7 @@
+body {
+  background-color: rgb(248, 248, 248);
+}
+
 .header,
 .main {
   padding: 0px 30px;
@@ -13,7 +17,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 .coin-name {
@@ -27,9 +31,19 @@ p {
 }
 
 .list-item {
-  min-width: 160px;
+  width: 150px;
 }
 
 .coin-icon {
   width: 30px;
+}
+
+.table,
+.table-title {
+  padding: 0px 20px;
+  background-color: white;
+}
+
+.table-title {
+  font-weight: bold;
 }
