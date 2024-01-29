@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import Child from "./components/Child";
+import "./App.css";
+import Main from "./components/Main";
+import Header from "./components/Header";
 
 class App extends Component {
   state = { show: true };
@@ -16,7 +18,8 @@ class App extends Component {
         </button>
         {this.state.show && (
           <>
-            <Child />
+            <Header />
+            <Main />
           </>
         )}
       </>

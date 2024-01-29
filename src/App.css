@@ -1,3 +1,35 @@
-.done {
-  background-color: gold;
+.header,
+.main {
+  padding: 0px 30px;
+  width: 80vw;
+  margin: auto;
+}
+
+p {
+  font-size: 16px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.coin-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.coin {
+  font-size: 16px;
+}
+
+.list-item {
+  min-width: 160px;
+}
+
+.coin-icon {
+  width: 30px;
 }
