@@ -13,7 +13,7 @@ class Child extends Component {
     console.log("HTML is now inside the DOM");
     try {
       const { data } = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/list?x_cg_demo_api_key=CG-7kXqTFkJKhp4ZPBs5XfJEYBn`
+        `https://api.coingecko.com/api/v3/coins/markets?x_cg_demo_api_key=CG-7kXqTFkJKhp4ZPBs5XfJEYBn`
       );
       this.setState({ cyrpto: data });
     } catch (err) {
