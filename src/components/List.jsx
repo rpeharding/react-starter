@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Button from "./Button";
-import Compare from "./Compare";
 
 class List extends Component {
   constructor() {
@@ -9,7 +8,7 @@ class List extends Component {
     // console.log("constructor ran, the component is born");
   }
 
-  state = { crypto: [] };
+  state = { crypto: [], favourites: [] };
   //empty version of container ahead of load.
 
   async componentDidMount() {
@@ -24,23 +23,47 @@ class List extends Component {
     }
   }
 
-  watchCoin = () => {
-    console.log("hi");
+  watchCoin = (coin) => {
+    console.log(coin);
+    const favourites = [...this.state.favourites];
+    favourites.push(coin);
+    this.setState({ favourites });
   };
 
   render() {
+    console.log(this.state, this.props);
     // console.log("render ran, HTML getting created", this.state);
     const coins = this.state.crypto;
+    let filtered = [...coins];
+    if (this.props.userInput) {
+      filtered = coins.filter((coin) => {
+        return coin.id.includes(this.props.userInput);
+      });
+    }
+
+    let filteredFavs = [...coins];
+    filteredFavs = filteredFavs.filter((coin) => {
+      return this.state.favourites.includes(coin.id);
+    });
+    console.log(filteredFavs);
+    // if (filtered.length === 0) {
+    //   filtered = [...coins];
+    // }
 
     // checking that we rendr page if we have got the data from the API
     if (coins) {
-      const coinDetails = coins.map((e) => {
-        return [e.image, e.id, e.current_price, e.price_change_percentage_24h];
+      const coinDetails = filtered.map((coin) => {
+        return {
+          image: coin.image,
+          name: coin.id,
+          price: coin.current_price,
+          priceChange: coin.price_change_percentage_24h,
+        };
       });
 
       return (
         <>
-          <Compare />
+          {filtered.length === 0 && <p>No results</p>}
           <div className="list">
             <div>
               <div className="flex table-title">
@@ -50,18 +73,19 @@ class List extends Component {
               </div>
 
               {coinDetails.map((e) => {
-                const upOrDown = e[3] > 0 ? "list-item up" : "list-item down";
+                const upOrDown =
+                  e.priceChange > 0 ? "list-item up" : "list-item down";
 
                 return (
                   <div className="flex table">
                     <div className="coin-name list-item">
-                      <img className="coin-icon" src={e[0]} />
-                      <h3 className="coin">{e[1]}</h3>
+                      <img className="coin-icon" src={e.image} />
+                      <h3 className="coin">{e.name}</h3>
                     </div>
-                    <p className="list-item">£ {e[2]}</p>
-                    <p className={upOrDown}>{e[3].toFixed(4)} %</p>
+                    <p className="list-item">£ {e.price}</p>
+                    <p className={upOrDown}>{e.priceChange.toFixed(4)} %</p>
                     <Button
-                      click={this.watchCoin}
+                      click={() => this.watchCoin(e.name)}
                       text="watch"
                       btnclass="btn"
                     />

@@ -8,22 +8,23 @@ class Main extends Component {
 
   onInput = (e) => {
     this.setState({ userInput: e.target.value });
-    console.log(this.state.userInput);
   };
 
   render() {
+    console.log(this.state);
     return (
       <>
         <div className="main">
           <Search
-            click={this.onInput}
+            onInput={this.onInput}
             formClass="form"
             inputClass="input"
             type="input"
             id="search"
             name="search"
           />
-          <List />
+          <Compare />
+          <List userInput={this.state.userInput} />
         </div>
       </>
     );

@@ -15,11 +15,11 @@ class Search extends Component {
   };
 
   render() {
-    const { type, id, name, formClass, inputClass, click } = this.props;
+    const { type, id, name, formClass, inputClass, onInput } = this.props;
     return (
       <form className={formClass}>
         <input
-          onClick={click}
+          onInput={onInput}
           className={inputClass}
           type={type}
           id={id}
