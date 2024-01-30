@@ -24,8 +24,8 @@ class Search extends Component {
           type={type}
           id={id}
           name={name}
+          placeholder="type to search coins.."
         />
-        <Button click={this.onSearch} text={"Search"} btnclass="search-btn" />
       </form>
     );
   }

@@ -73,25 +73,27 @@ class List extends Component {
       console.log(watched);
       return (
         <>
+          {filteredFavs.length > 0 && <h3>Watching</h3>}
           <div className="summary">
             {watched.map((coin) => {
               const upOrDown =
                 coin.priceChange > 0 ? "list-item up" : "list-item down";
               return (
-                <div className="compare-card">
-                  <div className="coin-name list-item">
-                    <img className="coin-icon" src={coin.image} />
-                    <h3 className="coin large-heading">{coin.name}</h3>
+                <>
+                  <div className="compare-card">
+                    <div className="coin-name list-item">
+                      <img className="coin-icon" src={coin.image} />
+                      <h3 className="coin large-heading">{coin.name}</h3>
+                    </div>
+                    <h3 className="compare-heading">Price</h3>
+                    <p className="list-item">£{coin.price}</p>
+                    <h3 className="compare-heading">24h%</h3>
+                    <p className={upOrDown}> {coin.priceChange.toFixed(4)} %</p>
                   </div>
-                  <h3 className="compare-heading">Price</h3>
-                  <p className="list-item">£{coin.price}</p>
-                  <h3 className="compare-heading">24h%</h3>
-                  <p className={upOrDown}> {coin.priceChange.toFixed(4)} %</p>
-                </div>
+                </>
               );
             })}
           </div>
-
           {filtered.length === 0 && <p>No results, try widening your search</p>}
           <div className="list">
             <div className="table-container">
@@ -146,3 +148,10 @@ class List extends Component {
 }
 
 export default List;
+
+// TO DO
+// cap compare at 3 items- add error message to remove one
+// add delete button to compare cards.
+// fix so that compare cards don't add in order from list but in order of adding
+// adjust design for mobile first.
+// janky css on narrow viewports for list background.
