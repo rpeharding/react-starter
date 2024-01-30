@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import List from "./List";
 import Search from "./Search";
-import Compare from "./Compare";
 
 class Main extends Component {
   state = {};
@@ -23,7 +22,6 @@ class Main extends Component {
             id="search"
             name="search"
           />
-          <Compare />
           <List userInput={this.state.userInput} />
         </div>
       </>
