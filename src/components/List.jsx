@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Button from "./Button";
+import Compare from "./Compare";
 
 class List extends Component {
   constructor() {
@@ -23,6 +24,10 @@ class List extends Component {
     }
   }
 
+  watchCoin = () => {
+    console.log("hi");
+  };
+
   render() {
     // console.log("render ran, HTML getting created", this.state);
     const coins = this.state.crypto;
@@ -32,34 +37,40 @@ class List extends Component {
       const coinDetails = coins.map((e) => {
         return [e.image, e.id, e.current_price, e.price_change_percentage_24h];
       });
-      console.log(coinDetails);
 
       return (
-        <div className="list">
-          <div>
-            <div className="flex table-title">
-              <p className="list-item">Coin</p>
-              <p className="list-item">Price</p>
-              <p className="list-item">24h %</p>
-            </div>
+        <>
+          <Compare />
+          <div className="list">
+            <div>
+              <div className="flex table-title">
+                <p className="list-item">Coin</p>
+                <p className="list-item">Price</p>
+                <p className="list-item">24h %</p>
+              </div>
 
-            {coinDetails.map((e) => {
-              const upOrDown = e[3] > 0 ? "list-item up" : "list-item down";
+              {coinDetails.map((e) => {
+                const upOrDown = e[3] > 0 ? "list-item up" : "list-item down";
 
-              return (
-                <div className="flex table">
-                  <div className="coin-name list-item">
-                    <img className="coin-icon" src={e[0]} />
-                    <h3 className="coin">{e[1]}</h3>
+                return (
+                  <div className="flex table">
+                    <div className="coin-name list-item">
+                      <img className="coin-icon" src={e[0]} />
+                      <h3 className="coin">{e[1]}</h3>
+                    </div>
+                    <p className="list-item">£ {e[2]}</p>
+                    <p className={upOrDown}>{e[3].toFixed(4)} %</p>
+                    <Button
+                      click={this.watchCoin}
+                      text="watch"
+                      btnclass="btn"
+                    />
                   </div>
-                  <p className="list-item">£ {e[2]}</p>
-                  <p className={upOrDown}>{e[3].toFixed(4)} %</p>
-                  <Button text="watch" btnClass="btn" />
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </>
       );
     }
 
